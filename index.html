@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>High-energy grating interferometry</title>
+    <meta content='Fourth progress report' name='description'>
+    <meta content='Matteo Abis' name='author'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+    <link href='css/reveal.min.css' rel='stylesheet'>
+    <link href='css/theme/eth.css' id='theme' rel='stylesheet'>
+    <link href='css/plots.css' rel='stylesheet'>
+    <!-- For syntax highlighting -->
+    <link href='lib/css/zenburn.css' rel='stylesheet'>
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+          link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+  </head>
+  <body>
+    <div class='reveal'>
+      <img align='left' alt='ETH Logo' src='images/eth-logo.jpg' width='20%'>
+      <img align='right' alt='PSI Logo' src='images/psi-logo.jpg' width='20%'>
+      <div class='slides'>
+        <section data-background-position='bottom' data-background-size='100%' data-background='images/ETHbackground.png'>
+          <h2>High-energy grating interferometry</h2>
+          <h3>The realm of Compton</h3>
+        </section>
+        <section>
+          <h2>On previous episodes</h2>
+          <h3>100 and 120 keV interferometers</h3>
+          <img src='images/hDPC_setup.png' width='50%'>
+          <p>paper published by Scientific Reports on 6<sup>th</sup> June</p>
+        </section>
+        <section>
+          <h2>Strong dark-field from homogeneous samples</h2>
+          <p>Example: profile of copper rods</p>
+          <p>Polychromatic effect or Compton scattering?</p>
+          <img src='images/profile_S00400.svg' width='50%'>
+        </section>
+        <section>
+          <h2>What's new today</h2>
+          <ul>
+            <li>experimental results at 120 keV</li>
+            <li>theoretical description</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>Experiment</h2>
+          </section>
+          <section>
+            <h2>Absorption \(A\) and dark field \(B\) <br> for different materials and thicknesses</h2>
+            <div id='materials'></div>
+          </section>
+          <section>
+            <h2>Procedure</h2>
+            <ul>
+              <li>sinogram (thickness variation)</li>
+              <li>Fourier component analysis</li>
+              <li>
+                <p>calculate log ratio as</p>
+                <p align='center'>
+                  <script mode='display' type='math/tex'>
+                    R = \dfrac{\log B}{\log A}
+                  </script>
+                </p>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Log ratio vs absorption</h2>
+            <div id='ratio-abs'></div>
+          </section>
+          <section>
+            <h2>Log ratio vs dark field</h2>
+            <div id='ratio-df'></div>
+          </section>
+          <section>
+            <h2>Dark field vs absorption</h2>
+            <div id='df-absorption'></div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Theory</h2>
+            <p><span style="font-variant: small-caps;">usaxs</span> approach</p>
+            <p>\[ s = g \star f \]</p>
+          </section>
+          <section>
+            <h2>A Compton distribution</h2>
+            <ul>
+              <li>absorption = extinction</li>
+              <li>uniform scattering</li>
+            </ul>
+            <div id='image'>
+              <img src='images/Klein-Nishina_distribution.png' width='30%'>
+            </div>
+            <p>differential Klein-Nishina cross section</p>
+          </section>
+          <section>
+            <p>
+              <script mode='display' type='math/tex'>
+                g(\phi) = \alpha \delta(\phi) + \beta (1 - \alpha)
+              </script>
+            </p>
+            <img src='images/distribution.jpg' width='60%'>
+          </section>
+          <section>
+            <h2>Relationship between \(A\) and \(B\)</h2>
+            <p>
+              <script mode='display' type='math/tex'>
+                \begin{align*}
+                A &= \int g(\phi) d\phi \\
+                \log B &= -\dfrac{1}{2A} \int \phi^2 g(\phi) d\phi \\
+                \end{align*}
+              </script>
+            </p>
+          </section>
+          <section>
+            <h2>Relationship between \(A\) and \(B\)</h2>
+            <p>
+              <script mode='display' type='math/tex'>
+                \begin{align*}
+                A &= \alpha + 2 \pi \beta (1 - \alpha) \\
+                \log B &= -\beta (1 - \alpha) \dfrac{\pi^3}{3A}
+                \end{align*}
+              </script>
+            </p>
+          </section>
+          <section>
+            <p>
+              <script mode='display' type='math/tex'>
+                B = \exp \left\{-\dfrac{\pi^3}{3} \dfrac{\beta}{1 - 2 \pi \beta} \dfrac{1 - A}{A} \right\}
+              </script>
+            </p>
+            <div id='theoretical'></div>
+          </section>
+        </section>
+        <section>
+          <h2>Results</h2>
+          <p>Fit for \( \beta = 0.08593(52) \)</p>
+          <p>\(p \lt 0.001\)</p>
+          <div id='fit'></div>
+        </section>
+        <section>
+          <h2>Results</h2>
+          <p>\( \beta = 0.07785(32) \)</p>
+          <p>no microstructures</p>
+          <div id='fit-low-scattering'></div>
+        </section>
+        <section>
+          <h2>Comments</h2>
+          <p>Some loss of complementarity</p>
+          <p>Fourier analysis \( \rightarrow \) fit with only two parameters</p>
+          <p>No phase contrast for highly absorbing samples, even at high energies</p>
+        </section>
+      </div>
+    </div>
+    <script src='lib/js/head.min.js'></script>
+    <script src='js/reveal.min.js'></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+      
+        //mine
+        height: "65%",
+        width: "90%",
+        margin: 0,
+        center: false,
+        transition: 'linear',
+        theme: 'eth',
+      
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/math/math.js', async: true }
+        ]
+      });
+    </script>
+    <script src='js/jquery.min.js'></script>
+    <script charset='utf-8' src='http://d3js.org/d3.v3.min.js'></script>
+    <script src='js/scatter.js'></script>
+    <script src='js/theoretical.js'></script>
+    <script src='js/ratio-material.js'></script>
+    <script src='js/material-table.js'></script>
+  </body>
+</html>

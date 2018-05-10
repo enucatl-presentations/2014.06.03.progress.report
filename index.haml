@@ -1,0 +1,180 @@
+!!!
+%html
+  %head
+    %title High-energy grating interferometry
+    %meta{name: "description", content: "Fourth progress report"}
+    %meta{name: "author", content: "Matteo Abis"}
+
+    %meta{name: "apple-mobile-web-app-capable", content: "yes"}
+    %meta{name: "apple-mobile-web-app-status-bar-style", content: "black-translucent"}
+
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
+
+    %link{rel: "stylesheet", href: "css/reveal.min.css"}
+    %link{rel: "stylesheet", href: "css/theme/eth.css", id: "theme"}
+    %link{rel: "stylesheet", href: "css/plots.css"}
+
+    <!-- For syntax highlighting -->
+    %link{rel: "stylesheet", href: "lib/css/zenburn.css"}
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    :javascript
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+          link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+
+  %body
+    .reveal
+      %img{src: "images/eth-logo.jpg", alt: "ETH Logo", width: "20%", align: "left"}
+      %img{src: "images/psi-logo.jpg", alt: "PSI Logo", width: "20%", align: "right"}
+      .slides
+        %section{data: {"background" => "images/ETHbackground.png", "background-size" => "100%", "background-position" => "bottom"}}
+          %h2 High-energy grating interferometry
+          %h3 The realm of Compton
+
+        %section
+          %h2 On previous episodes
+          %h3 100 and 120 keV interferometers
+          %img{src: "images/hDPC_setup.png", width: "50%"}
+          %p paper published by Scientific Reports on 6<sup>th</sup> June
+
+        %section
+          %h2 Strong dark-field from homogeneous samples
+          %p Example: profile of copper rods
+          %p Polychromatic effect or Compton scattering?
+          %img{src: "images/profile_S00400.svg", width: "50%"}
+
+        %section
+          %h2 What's new today
+          %ul
+            %li experimental results at 120 keV
+            %li theoretical description
+
+        %section
+          %section
+            %h2 Experiment
+          %section
+            %h2 Absorption \(A\) and dark field \(B\) <br> for different materials and thicknesses
+            #materials
+          %section
+            %h2 Procedure
+            %ul
+              %li sinogram (thickness variation)
+              %li Fourier component analysis
+              %li
+                %p calculate log ratio as
+                %p{align: "center"}
+                  %script{type: "math/tex", mode: "display"}
+                    R = \dfrac{\log B}{\log A}
+          %section
+            %h2 Log ratio vs absorption
+            #ratio-abs
+
+          %section
+            %h2 Log ratio vs dark field
+            #ratio-df
+
+          %section
+            %h2 Dark field vs absorption
+            #df-absorption
+
+        %section
+          %section
+            %h2 Theory
+            %p <span style="font-variant: small-caps;">usaxs</span> approach
+            %p \[ s = g \star f \]
+          %section
+            %h2 A Compton distribution
+            %ul
+              %li absorption = extinction
+              %li uniform scattering
+            #image
+              %img{src: "images/Klein-Nishina_distribution.png", width: "30%"}
+            %p differential Klein-Nishina cross section
+          %section
+            %p
+              %script{type: "math/tex", mode: "display"}
+                g(\phi) = \alpha \delta(\phi) + \beta (1 - \alpha)
+            %img{src: "images/distribution.jpg", width: "60%"}
+          %section
+            %h2 Relationship between \(A\) and \(B\)
+            %p
+              %script{type: "math/tex", mode: "display"}
+                \\begin{align*}
+                A &= \int g(\phi) d\phi \\
+                \\log B &= -\dfrac{1}{2A} \int \phi^2 g(\phi) d\phi \\
+                \\end{align*}
+          %section
+            %h2 Relationship between \(A\) and \(B\)
+            %p
+              %script{type: "math/tex", mode: "display"}
+                \\begin{align*}
+                A &= \alpha + 2 \pi \beta (1 - \alpha) \\
+                \\log B &= -\beta (1 - \alpha) \dfrac{\pi^3}{3A}
+                \\end{align*}
+          %section
+            %p
+              %script{type: "math/tex", mode: "display"}
+                B = \exp \left\{-\dfrac{\pi^3}{3} \dfrac{\beta}{1 - 2 \pi \beta} \dfrac{1 - A}{A} \right\}
+            #theoretical
+
+        %section
+          %h2 Results
+          %p Fit for \( \beta = 0.08593(52) \)
+          %p \(p \lt 0.001\)
+          #fit
+
+        %section
+          %h2 Results
+          %p \( \beta = 0.07785(32) \)
+          %p no microstructures
+          #fit-low-scattering
+
+        %section
+          %h2 Comments
+          %p Some loss of complementarity
+          %p Fourier analysis \( \rightarrow \) fit with only two parameters
+          %p No phase contrast for highly absorbing samples, even at high energies
+
+
+    %script{src: "lib/js/head.min.js"}
+    %script{src: "js/reveal.min.js"}
+
+    :javascript
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+
+        //mine
+        height: "65%",
+        width: "90%",
+        margin: 0,
+        center: false,
+        transition: 'linear',
+        theme: 'eth',
+      
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/math/math.js', async: true }
+        ]
+      });
+
+    %script{src: "js/jquery.min.js"}
+    %script{src: "http://d3js.org/d3.v3.min.js", charset: "utf-8"}
+    %script{src: "js/scatter.js"}
+    %script{src: "js/theoretical.js"}
+    %script{src: "js/ratio-material.js"}
+    %script{src: "js/material-table.js"}
